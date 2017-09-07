@@ -18,16 +18,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\lib\NodeUI\common\gl.h">
+    <ClInclude Include="src\lib\NodeUI\NodeUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\lib\NodeUI\common\math.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\lib\NodeUI\common\window.h">
+    <ClInclude Include="src\lib\NodeUI\common\gl\gl.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\lib\NodeUI\NodeUI.h">
+    <ClInclude Include="src\lib\NodeUI\common\gl\mouse.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\NodeUI\common\gl\window.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\NodeUI\common\gl\common.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

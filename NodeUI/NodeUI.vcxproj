@@ -118,9 +118,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\lib\NodeUI\common\gl.h" />
+    <ClInclude Include="src\lib\NodeUI\common\gl\common.h" />
+    <ClInclude Include="src\lib\NodeUI\common\gl\gl.h" />
     <ClInclude Include="src\lib\NodeUI\common\math.h" />
-    <ClInclude Include="src\lib\NodeUI\common\window.h" />
+    <ClInclude Include="src\lib\NodeUI\common\gl\mouse.h" />
+    <ClInclude Include="src\lib\NodeUI\common\gl\window.h" />
     <ClInclude Include="src\lib\NodeUI\NodeUI.h" />
   </ItemGroup>
   <ItemGroup>

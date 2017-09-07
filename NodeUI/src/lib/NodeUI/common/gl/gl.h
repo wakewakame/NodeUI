@@ -1,3 +1,23 @@
+/*
+
+[GLManagementクラス]
+	[マクロ]
+		NUI_DEBUGが定義されていると、ウィンドウとは別にコンソールが表示される
+
+	[関数]
+		init()
+			初期化関数
+			ほかの関数を使用する前にこの関数を実行する
+
+		loop()
+			毎フレーム実行すべき関数
+
+		exit()
+			終了時に実行すべき関数
+
+*/
+
+
 #pragma once
 
 //コンソール非表示化
@@ -5,11 +25,7 @@
 #pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #endif
 
-#include <GL\glew.h>
-#include <GLFW\glfw3.h>
-#include <glm\glm.hpp>
-
-#include "window.h"
+#include "common.h"
 
 namespace nui {
 	class GLManagement {
@@ -24,21 +40,7 @@ namespace nui {
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
 			// ウィンドウ生成
-			Window::setGLFWHwnd(
-				glfwCreateWindow(
-					Window::getSize().x,
-					Window::getSize().y,
-					Window::getTitle().c_str(),
-					NULL,
-					NULL
-				)
-			);
-
-			// ウィンドウが生成されていなければ終了
-			if (Window::getGLFWHwnd() == NULL) return 1;
-
-			// 生成したウィンドウをOpenGLの処理対象にする
-			glfwMakeContextCurrent(Window::getGLFWHwnd());
+			if (Window::createWindow()) return 1;
 
 			// GLEW初期化
 			glewExperimental = GL_TRUE;
@@ -70,6 +72,8 @@ namespace nui {
 
 			// nui内のloop関数をすべて実行
 			if (Window::loop()) return 1;
+			// マウスイベント取得
+			Mouse::loop();
 
 			// イベントが発生するまで待機
 			glfwPollEvents();

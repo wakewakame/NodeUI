@@ -1,13 +1,12 @@
 //デバッグモードの時は下のコメントアウトを外す
 #define NUI_DEBUG
 
-#include <Windows.h>
 #include <iostream>
 
 #include "lib/NodeUI/NodeUI.h"
 
-int main(int argc, LPSTR argv[]) {
-	nui::GLManagement::init();
+int main() {
+	if (nui::GLManagement::init()) return 1;
 
 	while (!nui::GLManagement::loop()) {
 		//バッファに描画
