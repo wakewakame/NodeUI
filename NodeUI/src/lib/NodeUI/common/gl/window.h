@@ -2,16 +2,16 @@
 
 [Windowクラス]
 	[定義]
-		using SIZE = glm::ivec2;
-		using TITLE = std::string;
-		using FPS = double;
-		using SPEED = double;
-		using RESIZE_FLAG = bool;
-		using GLFW_HANDLE = GLFWwindow*;
-		using CLOSE = std::function<void()>;
+		using SIZE = glm::ivec2
+		using TITLE = std::string
+		using FPS = double
+		using SPEED = double
+		using RESIZE_FLAG = bool
+		using GLFW_HANDLE = GLFWwindow*
+		using CLOSE = std::function<void()>
 
 	[変数]
-		CLOSE close_event;
+		CLOSE close_event
 			ウィンドウクローズ時に処理される関数を代入するための型
 
 	[関数]
@@ -63,8 +63,6 @@
 */
 
 #pragma once
-
-#include "common.h"
 
 namespace nui {
 	class Window {

@@ -33,7 +33,7 @@
     <ClInclude Include="src\lib\NodeUI\common\gl\window.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\lib\NodeUI\common\gl\common.h">
+    <ClInclude Include="src\lib\NodeUI\common\gl\keyboard.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

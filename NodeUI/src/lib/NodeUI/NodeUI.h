@@ -5,4 +5,4 @@
 #pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #endif
 
-#include "common\gl\gl.h"
+#include "common\draw\draw.h"

@@ -17,7 +17,6 @@
 
 */
 
-
 #pragma once
 
 //コンソール非表示化
@@ -25,7 +24,17 @@
 #pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #endif
 
-#include "common.h"
+#pragma once
+
+#include <GL\glew.h>
+#include <GLFW\glfw3.h>
+#include <glm\glm.hpp>
+#include <string>
+#include <functional>
+
+#include "window.h"
+#include "mouse.h"
+#include "keyboard.h"
 
 namespace nui {
 	class GLManagement {
@@ -34,10 +43,11 @@ namespace nui {
 			// GLFW初期化
 			if (glfwInit() == GL_FALSE) return 1;
 
-			// OpenGL Version 4.3を指定
-			glfwWindowHint(GLFW_SAMPLES, 4);
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); // OpenGL Version 4.xを指定
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5); // OpenGL Version x.5を指定
+			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, true); // 古い機能を使えなくする			
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // コアプロファイル指定		
+			glfwWindowHint(GLFW_SAMPLES, 4); // アンチエイリアスを有効化
 
 			// ウィンドウ生成
 			if (Window::createWindow()) return 1;
@@ -72,11 +82,7 @@ namespace nui {
 
 			// nui内のloop関数をすべて実行
 			if (Window::loop()) return 1;
-			// マウスイベント取得
-			Mouse::loop();
-
-			// イベントが発生するまで待機
-			glfwPollEvents();
+			if (Mouse::loop()) return 1;
 
 			return 0;
 		}
