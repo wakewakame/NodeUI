@@ -17,22 +17,30 @@
 	[関数]
 		static bool loop()
 			毎フレーム実行すべき関数
-			GLManagementクラスが実行するため、通常は呼び出さなくてよい。
+			GLManagementクラスが実行するため、通常は呼び出さなくてよい
+			戻り値:成功:0,エラー:1
 
 		static bool setSize(SIZE set_size)
 			ウィンドウサイズをset_sizeに変更する
+			引数1:ウィンドウサイズ
+			戻り値:成功:0,エラー:1
 
 		static bool setTitle(TITLE set_title)
 			ウィンドウタイトルをset_titleに変更する
+			引数1:ウィンドウタイトルを
+			戻り値:成功:0,エラー:1
 
 		static bool setStdFps(FPS set_std_fps)
 			getSpeed関数の計算基準となるフレームレートをset_std_fpsにする
 			デフォルトのフレームレートは60.0
 			尚、実際に描画されるフレームレートとの関係はない
+			引数1:フレームレートは
+			戻り値:成功:0,エラー:1
 
-		static bool createWindow(GLFW_HANDLE set_gl_hwnd)
+		static bool createWindow()
 			ウィンドウを生成する
-			GLManagementクラスが実行するため、通常は呼び出さなくてよい。
+			GLManagementクラスが実行するため、通常は呼び出さなくてよい
+			戻り値:成功:0,エラー:1
 
 		static SIZE getSize()
 			現在のウィンドウの大きさを取得する
@@ -173,7 +181,7 @@ namespace nui {
 	Window::FPS Window::fps = 0.0;
 	Window::FPS Window::std_fps = 60.0;
 	Window::SPEED Window::speed = 1.0;
-	Window::RESIZE_FLAG Window::resize_flag = 0;
+	Window::RESIZE_FLAG Window::resize_flag = 1;
 	Window::GLFW_HANDLE Window::gl_hwnd = nullptr;
 	Window::CLOSE Window::close_event = Window::default_close_event;
 }

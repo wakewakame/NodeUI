@@ -118,7 +118,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\lib\NodeUI\common\draw\draw_base.h" />
     <ClInclude Include="src\lib\NodeUI\common\draw\draw.h" />
+    <ClInclude Include="src\lib\NodeUI\common\draw\shader.h" />
+    <ClInclude Include="src\lib\NodeUI\common\draw\shader_base.h" />
     <ClInclude Include="src\lib\NodeUI\common\gl\gl.h" />
     <ClInclude Include="src\lib\NodeUI\common\gl\keyboard.h" />
     <ClInclude Include="src\lib\NodeUI\common\math.h" />

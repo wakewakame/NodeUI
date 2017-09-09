@@ -19,24 +19,31 @@
 		static bool loop()
 			毎フレーム実行すべき関数
 			GLManagementクラスが実行するため、通常は呼び出さなくてよい。
+			戻り値:成功:0,エラー:1
 
 		static inline CURSOR getCursor()
 			現在のマウスカーソルの座標を取得
+			戻り値:現在のマウスカーソルの座標
 
 		static inline CURSOR getCursorMove()
 			1つ前のフレームからのマウスカーソルの移動量を取得
+			戻り値:1つ前のフレームからのマウスカーソルの移動量
 
 		static inline CURSOR getDragFrom()
 			左、右、ホイールのいずれかがクリックされた瞬間のカーソル座標を取得(ドラッグ用)
+			戻り値:左、右、ホイールのいずれかがクリックされた瞬間のカーソル座標
 
 		static inline CLICK getClickA()
 			押されている間ずっと1のクリック情報を取得
+			戻り値:押されている間ずっと1のクリック情報
 
 		static inline CLICK getClickB()
 			押されたフレームのみ1のクリック情報を取得
+			戻り値:押されたフレームのみ1のクリック情報
 
 		static inline WHEEL getWheel()
 			1フレーム間に発生したホイール回転量を取得
+			戻り値:1フレーム間に発生したホイール回転量を取得
 
 */
 

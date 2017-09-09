@@ -4,16 +4,31 @@
 	[マクロ]
 		NUI_DEBUGが定義されていると、ウィンドウとは別にコンソールが表示される
 
+	[定義]
+		struct VERSION{
+			char major; // OpenGLのmajorバージョン
+			char minor; // OpenGLのminorバージョン
+		}
+
 	[関数]
-		init()
+		bool init(VERSION set_gl_version)
 			初期化関数
+			DrawBaseクラスが実行するため、通常は呼び出さなくてよい
 			ほかの関数を使用する前にこの関数を実行する
+			戻り値:成功:0,エラー:1
 
-		loop()
+		bool loop()
 			毎フレーム実行すべき関数
+			DrawBaseクラスが実行するため、通常は呼び出さなくてよい
+			戻り値:成功:0,エラー:1
 
-		exit()
+		void exit()
 			終了時に実行すべき関数
+			DrawBaseクラスが実行するため、通常は呼び出さなくてよい
+
+		VERSION getVersion()
+			現在指定されているOpenGLのバージョンを取得する
+			戻り値:現在指定されているOpenGLのバージョン
 
 */
 
@@ -39,14 +54,31 @@
 namespace nui {
 	class GLManagement {
 	public:
-		static bool init() {
+		struct VERSION{
+			char major;
+			char minor;
+			VERSION() {
+				major = 4;
+				minor = 5;
+			}
+			VERSION(char set_major, char set_minor) {
+				major = set_major;
+				minor = set_minor;
+			}
+		};
+	private:
+		static VERSION gl_version;
+	public:
+		static bool init(VERSION set_gl_version = VERSION()) {
 			// GLFW初期化
 			if (glfwInit() == GL_FALSE) return 1;
 
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); // OpenGL Version 4.xを指定
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5); // OpenGL Version x.5を指定
-			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, true); // 古い機能を使えなくする			
-			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // コアプロファイル指定		
+			gl_version = set_gl_version;
+
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, gl_version.major); // OpenGL Version 4.xを指定
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, gl_version.minor); // OpenGL Version x.5を指定
+			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Mac用
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // 古い機能を使えなくする		
 			glfwWindowHint(GLFW_SAMPLES, 4); // アンチエイリアスを有効化
 
 			// ウィンドウ生成
@@ -89,5 +121,7 @@ namespace nui {
 		static void exit() {
 			glfwTerminate();
 		}
+		static inline VERSION getVersion() { return gl_version; }
 	};
+	GLManagement::VERSION GLManagement::gl_version;
 }
