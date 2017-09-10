@@ -1,39 +1,39 @@
-#pragma once
-
 /*
 
 [ShaderBaseクラス]
-	[定義]
-		using PROGRAM = GLuint
-		using SHADER = GLuint
-		using SHADER_CODE = std::string
-		struct ERROR {
-			std::string vertex; // バーテックスシェーダエラー内容
-			std::string fragment; // フラグメントシェーダエラー内容
-			std::string link; // リンクエラー内容
-		}
+[定義]
+using PROGRAM = GLuint
+using SHADER = GLuint
+using SHADER_CODE = std::string
+struct ERROR {
+std::string vertex; // バーテックスシェーダエラー内容
+std::string fragment; // フラグメントシェーダエラー内容
+std::string link; // リンクエラー内容
+}
 
-	[関数]
-		PROGRAM createProgram(SHADER_CODE vs, SHADER_CODE fs)
-			シェーダコンパイル関数
-			引数1:バーテックスシェーダのソースコード
-			引数2:フラグメントシェーダのソースコード
-			戻り値:プログラムID
-			コンパイルに失敗した場合は0が返る
+[関数]
+PROGRAM createProgram(SHADER_CODE vs, SHADER_CODE fs)
+シェーダコンパイル関数
+引数1:バーテックスシェーダのソースコード
+引数2:フラグメントシェーダのソースコード
+戻り値:プログラムID
+コンパイルに失敗した場合は0が返る
 
-		bool setProgram(PROGRAM p)
-			シェーダを指定する
-			引数1:プログラムID
-			戻り値:成功:0,エラー:1
+bool setProgram(PROGRAM p)
+シェーダを指定する
+引数1:プログラムID
+戻り値:成功:0,エラー:1
 
-		PROGRAM getNowProgram()
-			現在指定されているシェーダを取得する
-			戻り値:現在指定されているプログラムID
+PROGRAM getNowProgram()
+現在指定されているシェーダを取得する
+戻り値:現在指定されているプログラムID
 
-		ERROR getError()
-			エラー内容を取得する
+ERROR getError()
+エラー内容を取得する
 
 */
+
+#pragma once
 
 #include <string>
 #include <vector>
@@ -44,11 +44,11 @@ namespace nui {
 		using PROGRAM = GLuint;
 		using SHADER = GLuint;
 		using SHADER_CODE = std::string;
-		struct ERROR {
+		struct ERROR_MESSAGE {
 			std::string vertex;
 			std::string fragment;
 			std::string link;
-			ERROR() {
+			ERROR_MESSAGE() {
 				vertex = "";
 				fragment = "";
 				link = "";
@@ -56,7 +56,7 @@ namespace nui {
 		};
 	protected:
 		static PROGRAM now; // 現在指定されているプログラムのID
-		static ERROR error; // エラー代入用
+		static ERROR_MESSAGE error; // エラー代入用
 		static SHADER createShader(SHADER_CODE code, GLenum Type) {
 			// シェーダの生成
 			GLuint ShaderID = glCreateShader(Type);
@@ -122,8 +122,8 @@ namespace nui {
 			return 0;
 		}
 		static inline PROGRAM getNowProgram() { return now; }
-		static inline ERROR getError() { return error; }
+		static inline ERROR_MESSAGE getError() { return error; }
 	};
 	ShaderBase::PROGRAM ShaderBase::now;
-	ShaderBase::ERROR ShaderBase::error;
+	ShaderBase::ERROR_MESSAGE ShaderBase::error;
 }

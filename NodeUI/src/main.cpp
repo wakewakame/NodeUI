@@ -11,14 +11,30 @@ int main() {
 	while (true) {
 		nui::Draw::clear();
 
-		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		//nui::Draw::setFill(0);
+		nui::Shader::setProgram(
+			nui::Shader::createFSProgram(
+				R"(
+					#version 450 core
+					in vec4 fragmentColor;
+					out vec4 color;
+					void main(){
+						if ((int(gl_FragCoord.x+gl_FragCoord.y)%60) < 30){
+							color = fragmentColor;
+						}
+						else{
+							color = vec4(0.0);
+						}
+					}
+				)"
+			)
+		);
 
 		nui::Draw::setColor(0.0f, 0.5f, 0.78f, 1.0f);
-		nui::Draw::box(
-			nui::Mouse::getCursor().x - 100,
-			nui::Mouse::getCursor().y - 100,
-			nui::Mouse::getCursor().x + 100,
-			nui::Mouse::getCursor().y + 100
+		nui::Draw::circle(
+			nui::Mouse::getCursor().x,
+			nui::Mouse::getCursor().y,
+			100
 		);
 
 

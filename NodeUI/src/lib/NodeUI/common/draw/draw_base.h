@@ -1,5 +1,3 @@
-#pragma once
-
 /*
 
 [DrawBaseクラス]
@@ -63,6 +61,8 @@
 			Drawクラスが実行するため、通常は呼び出さなくてよい
 
 */
+
+#pragma once
 
 #include <vector>
 

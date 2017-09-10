@@ -1,10 +1,9 @@
-#pragma once
-
 /*
 
 [Shaderクラス] 継承元:ShaderBase
 	[定義]
 		[default vertex shader]
+			#version xxx core // OpenGLのバージョン指定(デフォルトは450)
 			in vec2 pos; // 入力頂点配列
 			in vec4 col; // 入力色配列
 			out vec4 fragmentColor; // 出力色配列
@@ -27,6 +26,7 @@
 			}
 
 		[default fragment shader]
+			#version xxx core // OpenGLのバージョン指定(デフォルトは450)
 			in vec4 fragmentColor; // 入力色配列
 			out vec4 color; // 出力色配列
 			void main(){
@@ -77,6 +77,8 @@
 			戻り値:成功:0,エラー:1
 
 */
+
+#pragma once
 
 #include "shader_base.h"
 

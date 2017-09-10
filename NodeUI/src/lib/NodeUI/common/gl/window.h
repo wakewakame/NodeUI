@@ -1,72 +1,77 @@
 /*
 
 [Windowクラス]
-	[定義]
-		using SIZE = glm::ivec2
-		using TITLE = std::string
-		using FPS = double
-		using SPEED = double
-		using RESIZE_FLAG = bool
-		using GLFW_HANDLE = GLFWwindow*
-		using CLOSE = std::function<void()>
+[定義]
+using SIZE = glm::ivec2
+using TITLE = std::string
+using FPS = double
+using SPEED = double
+using RESIZE_FLAG = bool
+using GLFW_HANDLE = GLFWwindow*
+using CLOSE = std::function<void()>
 
-	[変数]
-		CLOSE close_event
-			ウィンドウクローズ時に処理される関数を代入するための型
+[変数]
+CLOSE close_event
+ウィンドウクローズ時に処理される関数を代入するための型
 
-	[関数]
-		static bool loop()
-			毎フレーム実行すべき関数
-			GLManagementクラスが実行するため、通常は呼び出さなくてよい
-			戻り値:成功:0,エラー:1
+[関数]
+bool loop()
+毎フレーム実行すべき関数
+GLManagementクラスが実行するため、通常は呼び出さなくてよい
+戻り値:成功:0,エラー:1
 
-		static bool setSize(SIZE set_size)
-			ウィンドウサイズをset_sizeに変更する
-			引数1:ウィンドウサイズ
-			戻り値:成功:0,エラー:1
+bool setSize(SIZE set_size)
+ウィンドウサイズをset_sizeに変更する
+引数1:ウィンドウサイズ
+戻り値:成功:0,エラー:1
 
-		static bool setTitle(TITLE set_title)
-			ウィンドウタイトルをset_titleに変更する
-			引数1:ウィンドウタイトルを
-			戻り値:成功:0,エラー:1
+bool setPos(SIZE set_pos)
+ウィンドウ位置をset_posに変更する
+引数1:ウィンドウ座標
+戻り値:成功:0,エラー:1
 
-		static bool setStdFps(FPS set_std_fps)
-			getSpeed関数の計算基準となるフレームレートをset_std_fpsにする
-			デフォルトのフレームレートは60.0
-			尚、実際に描画されるフレームレートとの関係はない
-			引数1:フレームレートは
-			戻り値:成功:0,エラー:1
+bool setTitle(TITLE set_title)
+ウィンドウタイトルをset_titleに変更する
+引数1:ウィンドウタイトルを
+戻り値:成功:0,エラー:1
 
-		static bool createWindow()
-			ウィンドウを生成する
-			GLManagementクラスが実行するため、通常は呼び出さなくてよい
-			戻り値:成功:0,エラー:1
+bool setStdFps(FPS set_std_fps)
+getSpeed関数の計算基準となるフレームレートをset_std_fpsにする
+デフォルトのフレームレートは60.0
+尚、実際に描画されるフレームレートとの関係はない
+引数1:フレームレートは
+戻り値:成功:0,エラー:1
 
-		static SIZE getSize()
-			現在のウィンドウの大きさを取得する
+bool createWindow()
+ウィンドウを生成する
+GLManagementクラスが実行するため、通常は呼び出さなくてよい
+戻り値:成功:0,エラー:1
 
-		static TITLE getTitle()
-			現在のウィンドウタイトルを取得する
+SIZE getSize()
+現在のウィンドウの大きさを取得する
 
-		static FPS getFps()
-			現在のフレームレートを取得する
+TITLE getTitle()
+現在のウィンドウタイトルを取得する
 
-		static FPS getStdFps()
-			現在のgetSpeed関数の計算基準となるフレームレートを取得する
+FPS getFps()
+現在のフレームレートを取得する
 
-		static SPEED getSpeed()
-			1フレームあたりのアニメーション速度を算出する関数
-			setStdFpsで指定されたフレームレートのときのアニメーション速度を1とし、
-			現在のフレームレートが小さくなるにつれ、アニメーション速度は大きくなる
-			現在のフレームレートが大きくなるにつれ、アニメーション速度は小さくなる
-			計算内容は setStdFpsで指定されたフレームレート / 現在のフレームレート
-			フレームレートによりアニメーション速度にムラが出るのを防ぐ
+FPS getStdFps()
+現在のgetSpeed関数の計算基準となるフレームレートを取得する
 
-		static RESIZE_FLAG getResizeFlag()
-			ウィンドウサイズが更新された直後のフレームのみ1になる
+SPEED getSpeed()
+1フレームあたりのアニメーション速度を算出する関数
+setStdFpsで指定されたフレームレートのときのアニメーション速度を1とし、
+現在のフレームレートが小さくなるにつれ、アニメーション速度は大きくなる
+現在のフレームレートが大きくなるにつれ、アニメーション速度は小さくなる
+計算内容は setStdFpsで指定されたフレームレート / 現在のフレームレート
+フレームレートによりアニメーション速度にムラが出るのを防ぐ
 
-		static GLFW_HANDLE getGLFWHwnd()
-			GLFWウィンドウハンドル取得
+RESIZE_FLAG getResizeFlag()
+ウィンドウサイズが更新された直後のフレームのみ1になる
+
+GLFW_HANDLE getGLFWHwnd()
+GLFWウィンドウハンドル取得
 
 */
 
@@ -92,7 +97,7 @@ namespace nui {
 		static SPEED speed; // std_fps / fps (アニメーション速度の調節用)
 		static RESIZE_FLAG resize_flag; // ウィンドウリサイズフラグ
 		static GLFW_HANDLE gl_hwnd; // GLウィンドウハンドル
-		// リサイズイベント処理用
+									// リサイズイベント処理用
 		static void resize_func(GLFWwindow *window, int width, int heigh) {
 			setSize(glm::ivec2(width, heigh));
 		}
@@ -115,6 +120,12 @@ namespace nui {
 			fps = 1.0 / glfwGetTime();
 			speed = std_fps / fps;
 			glfwSetTime(0.0);
+
+			return 0;
+		}
+		static bool setPos(SIZE set_pos) {
+			// ウィンドウ位置変更
+			glfwSetWindowPos(gl_hwnd, set_pos.x, set_pos.y);
 
 			return 0;
 		}
@@ -167,13 +178,13 @@ namespace nui {
 
 			return 0;
 		}
-		static inline SIZE getSize() {return size;}
-		static inline TITLE getTitle() {return title;}
-		static inline FPS getFps() {return fps;}
-		static inline FPS getStdFps() {return std_fps;}
-		static inline SPEED getSpeed() {return speed;}
-		static inline RESIZE_FLAG getResizeFlag() {return resize_flag;}
-		static inline GLFW_HANDLE getGLFWHwnd() {return gl_hwnd;}
+		static inline SIZE getSize() { return size; }
+		static inline TITLE getTitle() { return title; }
+		static inline FPS getFps() { return fps; }
+		static inline FPS getStdFps() { return std_fps; }
+		static inline SPEED getSpeed() { return speed; }
+		static inline RESIZE_FLAG getResizeFlag() { return resize_flag; }
+		static inline GLFW_HANDLE getGLFWHwnd() { return gl_hwnd; }
 	};
 	Window::SIZE Window::size = Window::SIZE(640, 480);
 	Window::SIZE Window::size_buf = size;

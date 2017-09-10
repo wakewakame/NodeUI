@@ -1,7 +1,10 @@
 #pragma once
 
-namespace nui {
-	namespace math {
+#define M_PI 3.14159265358979323846
+#include <cmath>
 
-	}
+namespace nui {
+	class Math {
+
+	};
 }
