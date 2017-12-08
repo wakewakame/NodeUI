@@ -31,7 +31,7 @@
 #pragma once
 
 #include "draw_base.h"
-#include "../math.h"
+#include "../math/math.h"
 
 namespace nui {
 	class Draw : public DrawBase {
@@ -40,43 +40,10 @@ namespace nui {
 		static float width;
 
 	public:
-		static void setFill(bool set_fill) {
-			fill = set_fill;
-		}
-		static void setWidth(float set_width) {
-			width = set_width;
-		}
-		static void line(float start_x, float start_y, float end_x, float end_y) {
-			nui::Draw::addPoint(start_x, start_y);
-			nui::Draw::addPoint(end_x, end_y);
-			nui::Draw::drawPoint(GL_LINES);
-		}
-		static void box(float left, float top, float right, float bottom) {
-			nui::Draw::addPoint(left, top);
-			nui::Draw::addPoint(right, top);
-			nui::Draw::addPoint(right, bottom);
-			nui::Draw::addPoint(left, bottom);
-			if (fill) {
-				nui::Draw::drawPoint(GL_TRIANGLE_FAN);
-			}
-			else {
-				nui::Draw::drawPoint(GL_LINE_LOOP);
-			}
-		}
-		static void circle(float set_x, float set_y, float size, float div = 24) {
-			for (int i = 0; i < div; i++) {
-				nui::Draw::addPoint(
-					set_x + size * std::cos( (2.0*M_PI) * ( ((float)i) / ((float)div) )),
-					set_y + size * std::sin( (2.0*M_PI) * ( ((float)i) / ((float)div) ))
-				);
-			}
-			if (fill) {
-				nui::Draw::drawPoint(GL_TRIANGLE_FAN);
-			}
-			else {
-				nui::Draw::drawPoint(GL_LINE_LOOP);
-			}
-		}
+		static void setFill(bool set_fill);
+		static void setWidth(float set_width);
+		static void line(float start_x, float start_y, float end_x, float end_y);
+		static void box(float left, float top, float right, float bottom);
+		static void circle(float set_x, float set_y, float size, float div = 24);
 	};
-	bool Draw::fill = 1;
 }

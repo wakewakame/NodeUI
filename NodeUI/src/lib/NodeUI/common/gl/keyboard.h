@@ -14,12 +14,11 @@
 */
 
 #pragma once
+#include "gl.h"
 
 namespace nui {
 	class Keydoard {
 	public:
-		static bool getKey(int key) {
-			return glfwGetKey(Window::getGLFWHwnd(), key);
-		}
+		static bool getKey(int key);
 	};
 }

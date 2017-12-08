@@ -12,7 +12,7 @@ int main() {
 		nui::Draw::clear();
 
 		//nui::Draw::setFill(0);
-		nui::Shader::setProgram(
+		/*nui::Shader::setProgram(
 			nui::Shader::createFSProgram(
 				R"(
 					#version 450 core
@@ -28,7 +28,7 @@ int main() {
 					}
 				)"
 			)
-		);
+		);*/
 
 		nui::Draw::setColor(0.0f, 0.5f, 0.78f, 1.0f);
 		nui::Draw::circle(

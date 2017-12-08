@@ -35,6 +35,7 @@ ERROR getError()
 
 #pragma once
 
+#include "../gl/gl.h"
 #include <string>
 #include <vector>
 
@@ -48,82 +49,17 @@ namespace nui {
 			std::string vertex;
 			std::string fragment;
 			std::string link;
-			ERROR_MESSAGE() {
-				vertex = "";
-				fragment = "";
-				link = "";
-			}
+			ERROR_MESSAGE();
 		};
 	protected:
 		static PROGRAM now; // 現在指定されているプログラムのID
 		static ERROR_MESSAGE error; // エラー代入用
-		static SHADER createShader(SHADER_CODE code, GLenum Type) {
-			// シェーダの生成
-			GLuint ShaderID = glCreateShader(Type);
-			// シェーダのコンパイル
-			char const *SourcePointer = code.c_str();
-			glShaderSource(ShaderID, 1, &SourcePointer, NULL);
-			glCompileShader(ShaderID);
-			// エラーチェック
-			GLint Result = GL_FALSE;
-			glGetShaderiv(ShaderID, GL_COMPILE_STATUS, &Result);
-			if (Result == GL_FALSE) {
-				int InfoLogLength;
-				glGetShaderiv(ShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
-				std::vector<char> ErrorMessage(InfoLogLength + 1);
-				glGetShaderInfoLog(ShaderID, InfoLogLength, NULL, &ErrorMessage[0]);
-				switch (Type) {
-				case GL_VERTEX_SHADER:
-					error.vertex = std::string(ErrorMessage.data());
-					break;
-				case GL_FRAGMENT_SHADER:
-					error.fragment = std::string(ErrorMessage.data());
-					break;
-				}
-				return GL_FALSE;
-			}
-			// シェーダID出力
-			return ShaderID;
-		}
-		static void deleteShader(SHADER s) {
-			glDeleteShader(s);
-		}
+		static SHADER createShader(SHADER_CODE code, GLenum Type);
+		static void deleteShader(SHADER s);
 	public:
-		static PROGRAM createProgram(SHADER_CODE vs, SHADER_CODE fs) {
-			// シェーダのコンパイル
-			SHADER vs_id = createShader(vs, GL_VERTEX_SHADER);
-			SHADER fs_id = createShader(fs, GL_FRAGMENT_SHADER);
-			if (vs_id == GL_FALSE || fs_id == GL_FALSE) return GL_FALSE;
-			// プログラムの生成
-			PROGRAM ProgramID = glCreateProgram();
-			glAttachShader(ProgramID, vs_id);
-			glAttachShader(ProgramID, fs_id);
-			glLinkProgram(ProgramID);
-			// シェーダ破棄
-			deleteShader(vs_id);
-			deleteShader(fs_id);
-			// エラーチェック
-			GLint Result = GL_FALSE;
-			glGetProgramiv(ProgramID, GL_LINK_STATUS, &Result);
-			if (Result == GL_FALSE) {
-				int InfoLogLength;
-				glGetProgramiv(ProgramID, GL_INFO_LOG_LENGTH, &InfoLogLength);
-				std::vector<char> ErrorMessage(InfoLogLength + 1);
-				glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ErrorMessage[0]);
-				error.link = std::string(ErrorMessage.data());
-				return GL_FALSE;
-			}
-			// プログラムID出力
-			return ProgramID;
-		}
-		static bool setProgram(PROGRAM p) {
-			glUseProgram(p);
-			now = p;
-			return 0;
-		}
-		static inline PROGRAM getNowProgram() { return now; }
-		static inline ERROR_MESSAGE getError() { return error; }
+		static PROGRAM createProgram(SHADER_CODE vs, SHADER_CODE fs);
+		static bool setProgram(PROGRAM p);
+		static inline PROGRAM getNowProgram();
+		static inline ERROR_MESSAGE getError();
 	};
-	ShaderBase::PROGRAM ShaderBase::now;
-	ShaderBase::ERROR_MESSAGE ShaderBase::error;
 }

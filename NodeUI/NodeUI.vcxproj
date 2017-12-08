@@ -124,12 +124,21 @@
     <ClInclude Include="src\lib\NodeUI\common\draw\shader_base.h" />
     <ClInclude Include="src\lib\NodeUI\common\gl\gl.h" />
     <ClInclude Include="src\lib\NodeUI\common\gl\keyboard.h" />
-    <ClInclude Include="src\lib\NodeUI\common\math.h" />
+    <ClInclude Include="src\lib\NodeUI\common\math\math.h" />
     <ClInclude Include="src\lib\NodeUI\common\gl\mouse.h" />
     <ClInclude Include="src\lib\NodeUI\common\gl\window.h" />
     <ClInclude Include="src\lib\NodeUI\NodeUI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\lib\NodeUI\common\draw\draw.cpp" />
+    <ClCompile Include="src\lib\NodeUI\common\draw\draw_base.cpp" />
+    <ClCompile Include="src\lib\NodeUI\common\draw\shader.cpp" />
+    <ClCompile Include="src\lib\NodeUI\common\draw\shader_base.cpp" />
+    <ClCompile Include="src\lib\NodeUI\common\gl\gl.cpp" />
+    <ClCompile Include="src\lib\NodeUI\common\gl\keyboard.cpp" />
+    <ClCompile Include="src\lib\NodeUI\common\gl\mouse.cpp" />
+    <ClCompile Include="src\lib\NodeUI\common\gl\window.cpp" />
+    <ClCompile Include="src\lib\NodeUI\common\math\math.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

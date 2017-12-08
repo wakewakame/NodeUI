@@ -21,9 +21,6 @@
     <ClInclude Include="src\lib\NodeUI\NodeUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\lib\NodeUI\common\math.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\lib\NodeUI\common\gl\gl.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -48,9 +45,39 @@
     <ClInclude Include="src\lib\NodeUI\common\draw\draw.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\lib\NodeUI\common\math\math.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\NodeUI\common\draw\draw_base.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\NodeUI\common\draw\draw.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\NodeUI\common\draw\shader_base.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\NodeUI\common\draw\shader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\NodeUI\common\gl\gl.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\NodeUI\common\gl\keyboard.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\NodeUI\common\gl\mouse.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\NodeUI\common\gl\window.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\NodeUI\common\math\math.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
