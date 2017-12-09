@@ -1,5 +1,5 @@
-//デバッグモードの時は下のコメントアウトを外す
-#define NUI_DEBUG
+//コンソール非表示化
+#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 
 #include <iostream>
 

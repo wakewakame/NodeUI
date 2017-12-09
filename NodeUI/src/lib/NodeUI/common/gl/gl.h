@@ -34,11 +34,6 @@
 
 #pragma once
 
-//コンソール非表示化
-#ifndef NUI_DEBUG
-#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
-#endif
-
 #pragma once
 
 #include <GL\glew.h>
